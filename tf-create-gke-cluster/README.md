@@ -8,6 +8,7 @@ This Terraform template creates:
 ### Prerequisites
 - Terraform >= 1.5
 - gcloud CLI installed.
+- gcloud's *gke-gcloud-auth-plugin* is installed (gcloud components install gke-gcloud-auth-plugin)
 - A GCP project with GKE API enabled.
 
 ## Setup
@@ -47,4 +48,28 @@ This Terraform template creates:
 
 If the output is `pending`, wait a minute and run the output command again while the external load balancer is provisioning.
 
+
 ## Demo
+
+1. Find the URL for the nginx_service (above).  Open a new browser tab using it.
+
+1. Open https://console.cloud.google.com/kubernetes/deployment/us-south1/demo-gke-cluster/default/nginx/overview in a browser to see the running pod.
+
+1. Configure local *kubectl*:
+
+```
+gcloud container clusters get-credentials demo-gke-cluster --location=us-south1
+```
+
+1. Run local kubectl commands:
+
+```
+kubectl get nodes
+```
+
+## Cleanup:
+
+   ```powershell
+   terraform destroy
+   ```
+
